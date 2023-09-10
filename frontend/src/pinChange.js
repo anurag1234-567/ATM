@@ -9,6 +9,7 @@ function PinChange(){
     const [confirmNewPin, setConfirmNewPin] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const server_url = process.env.REACT_APP_server_url;
 
     const handleSubmit = async (e)=>{
        e.preventDefault();
@@ -25,7 +26,7 @@ function PinChange(){
        const account_no = localStorage.getItem('account_no');
 
        try{
-        await axios.put('http://localhost:4000/pinChange', { account_no: account_no, pin: newPin });
+        await axios.put(`${server_url}/pinChange`, { account_no: account_no, pin: newPin });
         localStorage.setItem('pin', newPin); 
         setMessage('PIN Change Successfully!');
        }catch(err){

@@ -7,6 +7,7 @@ function Deposit(){
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const server_url = process.env.REACT_APP_server_url;
 
     const handleSubmit = async ()=>{
         if(amount.length === 0) return;
@@ -17,7 +18,7 @@ function Deposit(){
         const new_balance = current_bal + Amount;
 
         try{
-            await axios.put('http://localhost:4000/setAmount', { account_no: account_no, amount: new_balance });
+            await axios.put(`${server_url}/setAmount`, { account_no: account_no, amount: new_balance });
             localStorage.setItem('amount', new_balance);
             setMessage('Cash Deposited Successfully!'); 
         }catch(err){

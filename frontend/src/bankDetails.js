@@ -1,4 +1,3 @@
-// {/* <p className='message'>Account Details</p> */}
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -7,13 +6,14 @@ function BankDetails(){
     const [bankDetails, setBankDetails] = useState({});
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const server_url = process.env.REACT_APP_server_url;
     
     const fetchdetails = async()=>{
         try{
             const account_no = localStorage.getItem('account_no');
             const pin = localStorage.getItem('pin');
       
-            const res = await axios.post('http://localhost:4000/customer', { account_no, pin });
+            const res = await axios.post(`${server_url}/customer`, { account_no, pin });
             setError(''); setBankDetails(res.data); 
         }catch(err){
             setError('Server Error');

@@ -8,6 +8,7 @@ function FundsTransfer(){
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const server_url = process.env.REACT_APP_server_url;
 
     const handleInputChange = (e)=>{
         const input = e.target.value;
@@ -33,7 +34,7 @@ function FundsTransfer(){
         const new_balance = current_bal - Amount; 
 
         try{
-            await axios.post('http://localhost:4000/fundsTransfer', data);
+            await axios.post(`${server_url}/fundsTransfer`, data);
             localStorage.setItem('amount', new_balance);
             setMessage('Cash Transfer Successfully!');
         }catch(err){

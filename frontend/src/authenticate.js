@@ -8,6 +8,7 @@ function Authenticate(){
     const [pin, setPin] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const server_url = process.env.REACT_APP_server_url;
 
     const handleInputChange = (e)=>{
         const input = e.target.value;
@@ -21,7 +22,7 @@ function Authenticate(){
         const data = { account_no: accountNo, pin: pin };
 
         try{
-            const res = await axios.post('http://localhost:4000/customer', data);
+            const res = await axios.post(`${server_url}/customer`, data);
             localStorage.setItem('account_no', res.data.account_no);
             localStorage.setItem('amount', res.data.amount);
             localStorage.setItem('pin', res.data.pin);
