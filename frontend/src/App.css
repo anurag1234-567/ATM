@@ -173,7 +173,8 @@ body{
     top: 73%;
 }
 .deposit-btn:hover,
- .main-menu:hover{
+ .main-menu:hover,
+.withdraw-btn:hover{
     cursor: pointer;
     background: rgba(0, 157, 255, 0.626);
  }
